@@ -1,6 +1,6 @@
 #![allow(unused)]
 
-static BASE64_CHARS: &[u8] =
+static BASE64_CHAR_TABLE: &[u8] =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=".as_bytes();
 
 // 编码
@@ -38,10 +38,10 @@ fn encode_group(chars: &[u8; 3], lack_num: i32) -> [u8; 4] {
     } as usize;
     let encode_index_char4 = if lack_num < 1 { c & 0b00111111 } else { 64 } as usize;
     [
-        BASE64_CHARS[encode_index_char1],
-        BASE64_CHARS[encode_index_char2],
-        BASE64_CHARS[encode_index_char3],
-        BASE64_CHARS[encode_index_char4],
+        BASE64_CHAR_TABLE[encode_index_char1],
+        BASE64_CHAR_TABLE[encode_index_char2],
+        BASE64_CHAR_TABLE[encode_index_char3],
+        BASE64_CHAR_TABLE[encode_index_char4],
     ]
 }
 
